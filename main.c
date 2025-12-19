@@ -1,20 +1,13 @@
-void daftarPeminjam(){
+void sortingNamaPeminjam() {
+    struct Buku temp;
 
-    if (totalPeminjaman == 0){
-        printf("\n-- Belum ada data peminjaman --\n");
-        return;
+    for (int i = 0; i < totalPeminjaman - 1; i++) {
+        for (int j = 0; j < totalPeminjaman - i - 1; j++) {
+            if (strcmp(daftarPeminjaman[j].NamaPeminjam, daftarPeminjaman[j+1].NamaPeminjam) > 0) {
+                temp = daftarPeminjaman[j];
+                daftarPeminjaman[j] = daftarPeminjaman[j+1];
+                daftarPeminjaman[j+1] = temp;
+            }
+        }
     }
-
-    printf("\n=== DAFTAR PEMINJAM BUKU ===\n");
-    printf("%-20s %-10s %-30s %-10s\n", "Nama Peminjam", "Kelas", "Judul Buku", "Jml Pinjam");
-    printf("------------------------------------------------------------------------------\n");
-
-    for (int i = 0; i < totalPeminjaman; i++) {
-        printf("%-20s %-10s %-30s %-10d\n",
-               daftarPeminjaman[i].NamaPeminjam,
-               daftarPeminjaman[i].Kelas,
-               daftarPeminjaman[i].JudulBuku,
-               daftarPeminjaman[i].jumlahPinjam);
-    }
-    printf("==============================================================================\n");
 }
