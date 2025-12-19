@@ -1,24 +1,20 @@
-void daftarBuku() {
-    if (totalBuku == 0) {
-        printf("\n-- Belum ada buku di perpustakaan --\n");
+void daftarPeminjam(){
+
+    if (totalPeminjaman == 0){
+        printf("\n-- Belum ada data peminjaman --\n");
         return;
     }
-    printf("\n%-37s=== DAFTAR SEMUA BUKU ===%-37s\n", " ", " ");
-    printf("==================================================================================================\n");
-    printf("%-3s|%-50s|%-10s|%-10s|%-10s|%-10s\n","No.", "Judul", "Kode", "Total", "Dipinjam", "Tersedia");
-    printf("--------------------------------------------------------------------------------------------------\n");
 
-    for (int i = 0; i < totalBuku; i++) {
-        int dipinjam = perpustakaan[i].sedangDipinjam;
-        int tersedia = perpustakaan[i].jumlahTotal - dipinjam;
+    printf("\n=== DAFTAR PEMINJAM BUKU ===\n");
+    printf("%-20s %-10s %-30s %-10s\n", "Nama Peminjam", "Kelas", "Judul Buku", "Jml Pinjam");
+    printf("------------------------------------------------------------------------------\n");
 
-        printf("%-3d|%-50s|%-10s|%-10d|%-10d|%-10d\n",
-               i+1,
-               perpustakaan[i].Judul,
-               perpustakaan[i].Kode,
-               perpustakaan[i].jumlahTotal,
-               dipinjam,
-               tersedia);
+    for (int i = 0; i < totalPeminjaman; i++) {
+        printf("%-20s %-10s %-30s %-10d\n",
+               daftarPeminjaman[i].NamaPeminjam,
+               daftarPeminjaman[i].Kelas,
+               daftarPeminjaman[i].JudulBuku,
+               daftarPeminjaman[i].jumlahPinjam);
     }
-    printf("==================================================================================================\n");
+    printf("==============================================================================\n");
 }
