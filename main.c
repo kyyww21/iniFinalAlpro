@@ -405,7 +405,7 @@ void subMenu2() {
     printf("|  [3] |  Kembali                             |\n");
     printf("|  [4] |  Selesai                             |\n");
     printf("+---------------------------------------------+\n");
-    printf("\nMasukkan Pilihan Anda [1-5]: ");
+    printf("\nMasukkan Pilihan Anda [1-4]: ");
 
     scanf("%d", &subOpsi2);
 
