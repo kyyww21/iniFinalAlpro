@@ -229,7 +229,7 @@ void bubbleSortBuku() {
 }
 
 void sortingNamaPeminjam() {
-    struct Buku temp;
+    struct Peminjaman temp;
 
     for (int i = 0; i < totalPeminjaman - 1; i++) {
         for (int j = 0; j < totalPeminjaman - i - 1; j++) {
