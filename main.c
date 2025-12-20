@@ -74,6 +74,7 @@ void penambahanBuku() {
         totalBuku++;
         printf("\n-- Buku baru berhasil ditambahkan --\n");
     }
+}
 void daftarBuku() {
     if (totalBuku == 0) {
         printf("\n-- Belum ada buku di perpustakaan --\n");
@@ -98,3 +99,4 @@ void daftarBuku() {
     }
     printf("==================================================================================================\n");
 }
+
