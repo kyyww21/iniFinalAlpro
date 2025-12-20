@@ -317,4 +317,4 @@ void hapusData() {
     if (!ditemukan) {
         printf("Data tidak ditemukan!\n");
     }
-}
+}   
