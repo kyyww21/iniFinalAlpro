@@ -22,7 +22,6 @@ struct Peminjaman daftarPeminjaman[200];
 int totalBuku = 0;
 int totalPeminjaman = 0;
 
-
 void penambahanBuku() {
     char kode[20];
     int jumlahTambah;
