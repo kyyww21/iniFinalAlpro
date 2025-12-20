@@ -318,3 +318,168 @@ void hapusData() {
         printf("Data tidak ditemukan!\n");
     }
 }
+
+void menu();
+
+void selesai() {
+    printf("Oke, Terimakasih ;)");
+}
+
+void selesaiPerubahan() {
+    printf("Perubahan Telah Disimpan, Terimakasih ;)\n");
+}
+
+void subMenu1() {
+    int subOpsi1;
+
+    printf("\n");
+    printf("+---------------------------------------------+\n");
+    printf("|  No  |           OPSI OPERATOR              |\n");
+    printf("+------+--------------------------------------+\n");
+    printf("|  [1] |  Penambahan Buku                     |\n");
+    printf("|  [2] |  Hapus Buku                          |\n");
+    printf("|  [3] |  Daftar Peminjam                     |\n");
+    printf("|  [4] |  Daftar Buku                         |\n");
+    printf("|  [5] |  Kembali                             |\n");
+    printf("|  [6] |  Selesai                             |\n");
+    printf("+---------------------------------------------+\n");
+    printf("\nMasukkan Pilihan Anda [1-6]: ");
+
+    scanf("%d", &subOpsi1);
+
+    if (subOpsi1 != 1) {
+        printf("\nError: Input harus berupa angka!\n");
+        while(getchar() != '\n');
+    }
+
+    switch(subOpsi1) {
+        case 1:
+            clear();
+            penambahanBuku();
+            bubbleSortBuku();
+            selesaiPerubahan();
+            subMenu1();
+            break;
+        case 2:
+            clear();
+            hapusData();
+            subMenu1();
+            break;
+        case 3:
+            clear();
+            sortingNamaPeminjam();
+            daftarPeminjam();
+            subMenu1();
+            break;
+        case 4:
+            clear();
+            daftarBuku();
+            subMenu1();
+            break;
+        case 5:
+            clear();
+            menu();
+            break;
+        case 6:
+            clear();
+            selesai();
+            break;
+        default:
+            printf("\nInput tidak valid.\n");
+            subMenu1();
+            break;
+    }
+}
+
+void subMenu2() {
+    int subOpsi2;
+
+    printf("\n");
+    printf("+---------------------------------------------+\n");
+    printf("|  No  |            OPSI PENGUNJUNG           |\n");
+    printf("+------+--------------------------------------+\n");
+    printf("|  [1] |  Peminjaman Buku                     |\n");
+    printf("|  [2] |  Pengembalian Buku                   |\n");
+    printf("|  [3] |  Kembali                             |\n");
+    printf("|  [4] |  Selesai                             |\n");
+    printf("+---------------------------------------------+\n");
+    printf("\nMasukkan Pilihan Anda [1-5]: ");
+
+    scanf("%d", &subOpsi2);
+
+    if ( subOpsi2 != 1) {
+        printf("\nError: Input harus berupa angka!\n");
+        while(getchar() != '\n');
+    }
+
+    switch(subOpsi2) {
+        case 1:
+            clear();
+            peminjamanBuku();
+            selesaiPerubahan();
+            subMenu2();
+            break;
+        case 2:
+            clear();
+            pengembalianBuku();
+            selesaiPerubahan();
+            subMenu2();
+            break;
+        case 3:
+            clear();
+            menu();
+            break;
+        case 4:
+            clear();
+            selesai();
+            break;
+        default:
+            printf("\nInput tidak valid.\n", subOpsi2);
+            subMenu2();
+            break;
+    }
+}
+
+void menu() {
+    int opsi;
+
+    printf("\n");
+    printf("+---------------------------------------------+\n");
+    printf("|  No  |              MENU UTAMA              |\n");
+    printf("+------+--------------------------------------+\n");
+    printf("|  [1] |  Operator                            |\n");
+    printf("|  [2] |  Pengunjung                          |\n");
+    printf("|  [3] |  Selesai                             |\n");
+    printf("+---------------------------------------------+\n");
+    printf("\nMasukkan Pilihan Anda [1-3]: ");
+
+    scanf("%d", &opsi);
+
+    if (opsi != 1) {
+        printf("\nError: Input harus berupa angka!\n");
+        while(getchar() != '\n');
+    }
+    switch(opsi) {
+        case 1:
+            clear();
+            subMenu1();
+            break;
+        case 2:
+            clear();
+            subMenu2();
+            break;
+        case 3:
+            clear();
+            selesai();
+            break;
+        default:
+            printf("\nInput tidak valid.\n");
+            menu();
+            break;
+    }
+}
+
+int main(){
+    menu();
+    return 0;
+}
