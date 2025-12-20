@@ -2,14 +2,14 @@
 #include <string.h>
 #include <stdlib.h>
 
-struct Buku {
+struct buku {
     char judulBuku[50];
     char kodeBuku[20];
     int jumlahTotal;      
     int sedangDipinjam; 
 };
 
-struct Peminjaman {
+struct peminjaman {
     char namaPeminjam[50];
     char kelasPinjam[10];
     char kodeBukuPinjam[20];
@@ -17,8 +17,8 @@ struct Peminjaman {
     int jumlahPinjam;
 };
 
-struct Buku perpustakaan[500];
-struct Peminjaman daftarPeminjaman[1000];
+struct buku perpustakaan[500];
+struct peminjaman daftarPeminjaman[1000];
 int totalBuku = 0;
 int totalPeminjaman = 0;
 
@@ -69,7 +69,7 @@ void penambahanBuku() {
     }
 
     if (!ditemukan) {
-        if (totalBuku >= 100) {
+        if (totalBuku >= 500) {
             printf("Penyimpanan penuh!\n");
             return;
         }
@@ -215,7 +215,7 @@ void pengembalianBuku() {
 }
 
 void bubbleSortBuku() {
-    struct Buku temp;
+    struct buku temp;
 
     for (int i = 0; i < totalBuku - 1; i++) {
         for (int j = 0; j < totalBuku - i - 1; j++) {
@@ -229,7 +229,7 @@ void bubbleSortBuku() {
 }
 
 void sortingNamaPeminjam() {
-    struct Peminjaman temp;
+    struct peminjaman temp;
 
     for (int i = 0; i < totalPeminjaman - 1; i++) {
         for (int j = 0; j < totalPeminjaman - i - 1; j++) {
@@ -363,7 +363,7 @@ void subMenu1() {
         case 1:
             clear();
             penambahanBuku();
-            bubbleSortBuku();
+            sortingNamaPeminjam();
             selesaiPerubahan();
             subMenu1();
             break;
@@ -374,12 +374,12 @@ void subMenu1() {
             break;
         case 3:
             clear();
-            sortingNamaPeminjam();
             daftarPeminjam();
             subMenu1();
             break;
         case 4:
             clear();
+            bubbleSortBuku();
             daftarBuku();
             subMenu1();
             break;
