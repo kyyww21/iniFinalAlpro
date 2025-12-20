@@ -17,13 +17,30 @@ struct Peminjaman {
     int jumlahPinjam;
 };
 
-struct Buku perpustakaan[100];
-struct Peminjaman daftarPeminjaman[200];
+struct Buku perpustakaan[500];
+struct Peminjaman daftarPeminjaman[1000];
 int totalBuku = 0;
 int totalPeminjaman = 0;
 
 void clear() {
     system("cls");
+}
+
+int inputInteger(const char* teks) {
+    int isi;
+    int hasil;
+
+    while (1) {
+        printf("%s", teks);
+        hasil = scanf("%d", &isi);
+        if (hasil == 1) {
+            while(getchar() != '\n'); 
+            return isi;
+        } else {
+            printf("\n-- Input tidak valid! Harap masukkan angka. --\n\n");
+            while(getchar() != '\n'); 
+        }
+    }
 }
 
 void penambahanBuku() {
@@ -35,7 +52,6 @@ void penambahanBuku() {
     printf("Masukkan Kode Buku  : ");
     scanf(" %[^\n]", kode);
 
-    
     for (int i = 0; i < totalBuku; i++) {
         if (strcmp(perpustakaan[i].kodeBuku, kode) == 0) {
             ditemukan = 1;
@@ -43,11 +59,9 @@ void penambahanBuku() {
             printf("\n-- Buku ditemukan --\n");
             printf("Judul: %s\n", perpustakaan[i].judulBuku);
             printf("Stok Total: %d\n", perpustakaan[i].jumlahTotal);
-            printf("Masukkan jumlah yang ingin ditambahkan : ");
-            scanf("%d", &jumlahTambah);
-
+            jumlahTambah = inputInteger("Masukkan jumlah yang ingin ditambahkan : ");
+            
             perpustakaan[i].jumlahTotal += jumlahTambah;
-
             printf("\n-- Stok berhasil ditambahkan! --\n");
             printf("Stok baru: %d\n", perpustakaan[i].jumlahTotal);
             break;
@@ -62,11 +76,10 @@ void penambahanBuku() {
 
         strcpy(perpustakaan[totalBuku].kodeBuku, kode);
 
-        printf("Masukkan Judul Buku : ");
+        printf("Masukkan Judul Buku : ");   
         scanf(" %[^\n]", perpustakaan[totalBuku].judulBuku);
-        printf("Masukkan Jumlah     : ");
-        scanf(" %d", &perpustakaan[totalBuku].jumlahTotal); 
-        
+        perpustakaan[totalBuku].jumlahTotal = inputInteger("Masukkan Jumlah     : ");
+
         perpustakaan[totalBuku].sedangDipinjam = 0;
 
         totalBuku++;
@@ -103,33 +116,25 @@ void peminjamanBuku() {
             printf("Kode Buku     : %s\n", perpustakaan[i].kodeBuku);
             printf("Stok Tersedia : %d\n", tersedia);
 
-            if (tersedia > 0) {
-                printf("\nMasukkan Jumlah yang Ingin Dipinjam : ");
-                scanf("%d", &jumlahPinjam);
+            jumlahPinjam = inputInteger("\nMasukkan Jumlah yang Ingin Dipinjam : ");
 
-                if (jumlahPinjam <= 0) {
-                    printf("\n-- Jumlah tidak valid! --\n");
-                } else if (jumlahPinjam > tersedia) {
-                    printf("\n-- Stok tidak mencukupi! --\n");
-                    printf("Stok tersedia hanya %d buku\n", tersedia);
-                } else {
-                    strcpy(daftarPeminjaman[totalPeminjaman].namaPeminjam, nama);
-                    strcpy(daftarPeminjaman[totalPeminjaman].kelasPinjam, kelas);
-                    strcpy(daftarPeminjaman[totalPeminjaman].kodeBukuPinjam, kode);
-                    strcpy(daftarPeminjaman[totalPeminjaman].judulBukuPinjam, perpustakaan[i].judulBuku);
-                    daftarPeminjaman[totalPeminjaman].jumlahPinjam = jumlahPinjam;
-                    totalPeminjaman++;
-
-                    perpustakaan[i].sedangDipinjam += jumlahPinjam;
-
-                    printf("\n-- Peminjaman Berhasil! --\n");
-                    printf("Nama Peminjam : %s\n", nama);
-                    printf("Kelas / Guru  : %s\n", kelas);
-                    printf("Nama Buku     : %s\n", perpustakaan[i].judulBuku);
-                    printf("Jumlah Pinjam : %d\n", jumlahPinjam);
-                }
+            if (jumlahPinjam <= 0) {
+                printf("\n-- Jumlah tidak valid! --\n");
             } else {
-                printf("\n-- Maaf, stok buku habis dipinjam --\n");
+                strcpy(daftarPeminjaman[totalPeminjaman].namaPeminjam, nama);
+                strcpy(daftarPeminjaman[totalPeminjaman].kelasPinjam, kelas);
+                strcpy(daftarPeminjaman[totalPeminjaman].kodeBukuPinjam, kode);
+                strcpy(daftarPeminjaman[totalPeminjaman].judulBukuPinjam, perpustakaan[i].judulBuku);
+                daftarPeminjaman[totalPeminjaman].jumlahPinjam = jumlahPinjam;
+                totalPeminjaman++;
+
+                perpustakaan[i].sedangDipinjam += jumlahPinjam;
+
+                printf("\n-- Peminjaman Berhasil! --\n");
+                printf("Nama Peminjam : %s\n", nama);
+                printf("Kelas / Guru  : %s\n", kelas);
+                printf("Nama Buku     : %s\n", perpustakaan[i].judulBuku);
+                printf("Jumlah Pinjam : %d\n", jumlahPinjam);
             }
             break;
         }
@@ -170,8 +175,7 @@ void pengembalianBuku() {
             printf("Judul Buku    : %s\n", daftarPeminjaman[i].judulBukuPinjam);
             printf("Jumlah Pinjam : %d\n", daftarPeminjaman[i].jumlahPinjam);
 
-            printf("\nMasukkan Jumlah yang Ingin Dikembalikan : ");
-            scanf("%d", &jumlahKembali);
+            jumlahKembali = inputInteger("\nMasukkan Jumlah yang Ingin Dikembalikan : ");
 
             if (jumlahKembali <= 0) {
                 printf("\n-- Jumlah tidak valid! --\n");
@@ -182,19 +186,16 @@ void pengembalianBuku() {
 
                 for (int j = 0; j < totalBuku; j++) {
                     if (strcmp(perpustakaan[j].kodeBuku, kode) == 0) {
-
                         perpustakaan[j].sedangDipinjam -= jumlahKembali;
                         break;
                     }
                 }
 
                 daftarPeminjaman[i].jumlahPinjam -= jumlahKembali;
-
                 printf("\n-- Pengembalian Berhasil! --\n");
 
                 if (daftarPeminjaman[i].jumlahPinjam == 0) {
                     printf("\n-- Semua buku telah dikembalikan! Data peminjaman dihapus. --\n");
-
                     for (int k = i; k < totalPeminjaman - 1; k++) {
                         daftarPeminjaman[k] = daftarPeminjaman[k + 1];
                     }
@@ -290,7 +291,7 @@ void daftarPeminjam(){
 }
 
 void hapusData() {
-    char id[20];
+    char idBuku[20];
     int ditemukan = 0;
 
     if (totalBuku == 0) {
@@ -299,10 +300,10 @@ void hapusData() {
     }
 
     printf("Masukkan Kode Buku yang ingin dihapus: ");
-    scanf(" %[^\n]", id);
+    scanf(" %[^\n]", idBuku);
 
     for (int i = 0; i < totalBuku; i++) {
-        if (strcmp(perpustakaan[i].kodeBuku, id) == 0) {
+        if (strcmp(perpustakaan[i].kodeBuku, idBuku) == 0) {
             ditemukan = 1;
 
             
