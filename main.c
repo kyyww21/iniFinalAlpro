@@ -75,6 +75,21 @@ void penambahanBuku() {
         printf("\n-- Buku baru berhasil ditambahkan --\n");
     }
 }
+
+void bubbleSortBuku() {
+    struct Buku temp;
+
+    for (int i = 0; i < totalBuku - 1; i++) {
+        for (int j = 0; j < totalBuku - i - 1; j++) {
+            if (strcmp(perpustakaan[j].Judul, perpustakaan[j+1].Judul) > 0) {
+                temp = perpustakaan[j];
+                perpustakaan[j] = perpustakaan[j+1];
+                perpustakaan[j+1] = temp;
+            }
+        }
+    }
+}
+
 void daftarBuku() {
     if (totalBuku == 0) {
         printf("\n-- Belum ada buku di perpustakaan --\n");
