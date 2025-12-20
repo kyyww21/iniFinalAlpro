@@ -306,7 +306,12 @@ void hapusData() {
         if (strcmp(perpustakaan[i].kodeBuku, idBuku) == 0) {
             ditemukan = 1;
 
-            
+            printf("\n-- Buku Yang Dihapus --\n");
+            printf("Judul Buku    : %s\n", perpustakaan[i].judulBuku);
+            printf("Kode Buku     : %s\n", perpustakaan[i].kodeBuku);
+            printf("Stok Total    : %d\n", perpustakaan[i].jumlahTotal);
+            printf("Sedang Dipinjam: %d\n", perpustakaan[i].sedangDipinjam);
+
             for (int j = i; j < totalBuku - 1; j++) {
                 perpustakaan[j] = perpustakaan[j + 1];
             }
