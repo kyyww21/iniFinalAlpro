@@ -363,7 +363,7 @@ void subMenu1() {
         case 1:
             clear();
             penambahanBuku();
-            sortingNamaPeminjam();
+            bubbleSortBuku();
             selesaiPerubahan();
             subMenu1();
             break;
@@ -374,12 +374,12 @@ void subMenu1() {
             break;
         case 3:
             clear();
+            sortingNamaPeminjam();
             daftarPeminjam();
             subMenu1();
             break;
         case 4:
             clear();
-            bubbleSortBuku();
             daftarBuku();
             subMenu1();
             break;
